@@ -24,10 +24,8 @@ walkthrough, and the constitution.
 
 ## Pull requests
 
-- Backend: `cd backend && TICKERLENS_HOME=/tmp/tl TICKERLENS_DB_PATH=/tmp/t.db
-  python3 -m pytest tests -q` — everything green, new behavior needs tests.
-- Frontend: `cd frontend && npm run typecheck` — clean.
-- Adding a data source? Follow the provider checklist in `CLAUDE.md`
-  (provider file + `SUBSCRIPTIONS` entry + registry + TTL + docs row).
-- Anything claiming statistical calibration must ship its validation
-  evidence, like the existing `band_validation.json`.
+### "Your First PR" Walkthrough
+1. **Fork & Clone:** Fork the repository on GitHub and clone your fork locally:
+   ```bash
+  git clone https://github.com/<your-username>/tickerlens.git
+  cd tickerlens
