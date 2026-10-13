@@ -2,7 +2,6 @@
 Setup Score unit tests — the densest suite by design (Q8b: pure functions,
 every branch). Naming: test_<component>_<behavior>.
 """
-import math
 
 import pytest
 
@@ -17,7 +16,6 @@ from analysis.setup_score import (
     compute_from_sections,
     vol_conviction_factor,
 )
-from config import DEFAULT_WEIGHTS
 
 
 # ─── c_momentum ────────────────────────────────────────────────────────────────

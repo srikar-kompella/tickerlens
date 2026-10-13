@@ -2,13 +2,11 @@
 Round-2 feature tests: live portfolio, news fallback chain, Claude news view,
 discussion ordering by activity, prompt v3 contract.
 """
-import time
 
 import pytest
 
 from analysis import composer
 from analysis.news_lex import score_headlines, score_text
-from db import connect
 from discussions_svc.parser import parse_discussion_file, upsert_discussion
 from tests.conftest import write_md
 

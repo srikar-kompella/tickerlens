@@ -1,7 +1,6 @@
 """
 Round-3 (P1–P6 + imports) tests.
 """
-import json
 
 import pytest
 

@@ -2,7 +2,6 @@
 Discussion parser + DB ops + TTL cache tests.
 """
 import json
-import os
 import time
 
 import pytest

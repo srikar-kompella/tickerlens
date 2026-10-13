@@ -24,7 +24,7 @@ walkthrough, and the constitution.
 
 ## Pull requests
 
-- Backend: `cd backend && TICKERLENS_HOME=/tmp/tl TICKERLENS_DB_PATH=/tmp/t.db
+- Backend: `cd backend && ruff check .` and `TICKERLENS_HOME=/tmp/tl TICKERLENS_DB_PATH=/tmp/t.db
   python3 -m pytest tests -q` — everything green, new behavior needs tests.
 - Frontend: `cd frontend && npm run typecheck` — clean.
 - Adding a data source? Follow the provider checklist in `CLAUDE.md`

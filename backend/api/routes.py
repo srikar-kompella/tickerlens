@@ -346,7 +346,7 @@ def stances_scorecard():
         except ProviderError:
             bars_by_symbol[sym] = []
     try:
-        spy = get_or_fetch(f"history:SPY", config.TTL["history"],
+        spy = get_or_fetch("history:SPY", config.TTL["history"],
                            lambda: hist("SPY"))["data"]
     except ProviderError:
         spy = []
