@@ -11,7 +11,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.11" }
       - run: pip install -r backend/requirements.txt
-      - name: pytest (scratch instance — never touches real user data)
+      - name: ruff lint
+        run: ruff check backend
+      - name: pytest (scratch instance - never touches real user data)
         env:
           TICKERLENS_HOME: /tmp/tl-ci
           TICKERLENS_DB_PATH: /tmp/tl-ci/test.db
