@@ -1,19 +1,22 @@
 // App shell — routing + cross-cutting concerns only (thin by spec §6).
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Toaster } from 'sonner'
+import { SkeletonCard } from '@/components/ui'
 import { CommandPalette } from '@/components/layout/CommandPalette'
 import { Sidebar, TABS, type TabKey } from '@/components/layout/Sidebar'
 import { useDiscussionStream } from '@/hooks'
-import Analysis from '@/pages/Analysis'
 import Setup from '@/pages/Setup'
-import Discover from '@/pages/Discover'
-import Discussions from '@/pages/Discussions'
-import Guide from '@/pages/Guide'
-import Portfolio from '@/pages/Portfolio'
-import Settings from '@/pages/Settings'
-import Watchlist from '@/pages/Watchlist'
+
+// Pages are code-split: each tab's code loads on first visit, not up front.
+const Analysis = lazy(() => import('@/pages/Analysis'))
+const Discover = lazy(() => import('@/pages/Discover'))
+const Discussions = lazy(() => import('@/pages/Discussions'))
+const Guide = lazy(() => import('@/pages/Guide'))
+const Portfolio = lazy(() => import('@/pages/Portfolio'))
+const Settings = lazy(() => import('@/pages/Settings'))
+const Watchlist = lazy(() => import('@/pages/Watchlist'))
 
 // URL ↔ state (survives refresh; ?symbol=PLTR&tab=analysis is shareable)
 const TAB_KEYS = new Set<string>(TABS.map((t) => t.key))
@@ -111,13 +114,15 @@ export default function App() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18 }}
               className="h-full">
-              {tab === 'analysis' && <Analysis symbol={symbol} setSymbol={analyze} />}
-              {tab === 'portfolio' && <Portfolio onAnalyze={analyze} />}
-              {tab === 'discover' && <Discover onAnalyze={analyze} />}
-              {tab === 'watchlist' && <Watchlist onAnalyze={analyze} />}
-              {tab === 'discussions' && <Discussions />}
-              {tab === 'settings' && <Settings />}
-              {tab === 'guide' && <Guide />}
+              <Suspense fallback={<div className="space-y-4"><SkeletonCard lines={2} /><SkeletonCard lines={6} /></div>}>
+                {tab === 'analysis' && <Analysis symbol={symbol} setSymbol={analyze} />}
+                {tab === 'portfolio' && <Portfolio onAnalyze={analyze} />}
+                {tab === 'discover' && <Discover onAnalyze={analyze} />}
+                {tab === 'watchlist' && <Watchlist onAnalyze={analyze} />}
+                {tab === 'discussions' && <Discussions />}
+                {tab === 'settings' && <Settings />}
+                {tab === 'guide' && <Guide />}
+              </Suspense>
             </motion.div>
           </AnimatePresence>
         </div>
