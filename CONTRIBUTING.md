@@ -31,3 +31,11 @@ walkthrough, and the constitution.
   (provider file + `SUBSCRIPTIONS` entry + registry + TTL + docs row).
 - Anything claiming statistical calibration must ship its validation
   evidence, like the existing `band_validation.json`.
+
+## Your first PR walkthrough
+
+1. Fork the repo and clone your fork locally.
+2. Create a new branch for your changes (e.g. `git checkout -b fix/issue-number`).
+3. Run backend tests and frontend typecheck to ensure everything is clean.
+4. Open the pull request using the existing PR template.
+5. Gotcha: GitHub only auto-closes issues when your PR description says `Fixes #3` with a space. `Fixes#3` without a space will not close the issue.
